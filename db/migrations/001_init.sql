@@ -2,7 +2,14 @@
 -- Semua tabel berada di schema privat "barber". Schema ini tidak diekspos Data API Supabase;
 -- aplikasi mengaksesnya hanya dari fungsi server lewat DATABASE_URL.
 
-create schema if not exists barber;
+-- Di Supabase, schema sudah dibuat dan dimiliki role aplikasi; buat hanya bila belum ada.
+do $$
+begin
+	if not exists (select 1 from pg_namespace where nspname = 'barber') then
+		create schema barber;
+	end if;
+end
+$$;
 
 create table barber.services (
 	id text primary key check (id ~ '^[a-z0-9-]{1,40}$'),
