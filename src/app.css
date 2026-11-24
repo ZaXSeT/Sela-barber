@@ -1,0 +1,134 @@
+@import '@fontsource/barlow-condensed/500.css';
+@import '@fontsource/barlow-condensed/600.css';
+@import '@fontsource/barlow-condensed/700.css';
+@import '@fontsource-variable/public-sans';
+
+:root {
+	--paper: #f1eadb;
+	--paper-deep: #e5dac4;
+	--card: #f8f3e8;
+	--ink: #1c1916;
+	--ink-soft: #4f4740;
+	--brick: #a0331f;
+	--brick-deep: #7e2617;
+	--rule: #1c1916;
+	--focus: #1f5fbf;
+
+	--display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+	--body: 'Public Sans Variable', system-ui, sans-serif;
+
+	--gutter: clamp(1rem, 4vw, 2.5rem);
+	--max: 76rem;
+	color-scheme: light;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	background: var(--paper);
+	color: var(--ink);
+	font-family: var(--body);
+	font-size: 1rem;
+	line-height: 1.55;
+	text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+	font-family: var(--display);
+	font-weight: 700;
+	line-height: 1;
+	letter-spacing: 0.005em;
+	margin: 0;
+}
+
+p {
+	margin: 0;
+}
+
+a {
+	color: inherit;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+}
+
+:focus-visible {
+	outline: 3px solid var(--focus);
+	outline-offset: 2px;
+}
+
+.wrap {
+	width: 100%;
+	max-width: var(--max);
+	margin-inline: auto;
+	padding-inline: var(--gutter);
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+	min-height: 3rem;
+	padding: 0.65rem 1.4rem;
+	border: 2px solid var(--brick);
+	border-radius: 2px;
+	background: var(--brick);
+	color: #fff;
+	font-family: var(--display);
+	font-size: 1.3rem;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	text-decoration: none;
+	cursor: pointer;
+}
+.btn:hover {
+	background: var(--brick-deep);
+	border-color: var(--brick-deep);
+}
+.btn[disabled] {
+	opacity: 0.55;
+	cursor: not-allowed;
+}
+.btn.ghost {
+	background: transparent;
+	color: var(--ink);
+	border-color: var(--ink);
+}
+.btn.ghost:hover {
+	background: var(--ink);
+	color: var(--paper);
+}
+
+.visually-hidden {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}

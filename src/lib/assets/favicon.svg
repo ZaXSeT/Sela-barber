@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+	<title>Sela Barber</title>
+	<rect width="64" height="64" rx="10" fill="#1c1916"/>
+	<rect x="22" y="8" width="20" height="48" rx="4" fill="#f1eadb"/>
+	<clipPath id="tiang"><rect x="22" y="8" width="20" height="48" rx="4"/></clipPath>
+	<g clip-path="url(#tiang)" fill="#a0331f">
+		<path d="M10 20 42 4v8L10 28z"/>
+		<path d="M10 36 54 14v8L10 44z"/>
+		<path d="M10 52 54 30v8L10 60z"/>
+		<path d="M22 66 54 46v8L22 74z"/>
+	</g>
+</svg>
