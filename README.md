@@ -4,7 +4,7 @@ Demo portofolio untuk pemilik barbershop satu kursi. Pengunjung melihat papan ha
 
 Semua nama, alamat, dan data pelanggan di proyek ini fiktif.
 
-**Status:** selesai dan teruji lokal (24 Nov 2026). Belum di-deploy. Langkah deploy ada di bagian [Deploy ke Vercel](#deploy-ke-vercel).
+**Status:** live di Production → **https://sela-barber.vercel.app** (diverifikasi 26 Nov 2026). Repo: [github.com/ZaXSeT/Sela-barber](https://github.com/ZaXSeT/Sela-barber).
 
 ![Kartu janji di HP, lebar 390 px](docs/hp-kartu-janji.png)
 
@@ -115,7 +115,32 @@ Untuk database Production, jalankan perintah ini dengan `DATABASE_URL` Productio
 | Restart | Postgres dihentikan lalu dinyalakan ulang | Agenda masih memuat 3 reservasi |
 | Layout | 390 px dan 1440 px | Tidak ada scroll horizontal; bilah ringkasan di HP tidak menutupi tombol |
 
-Environment yang diuji: Windows 11, Node 24.11.1, Postgres tertanam 19 (beta) lokal. Vercel Preview dan Production belum diuji.
+Environment yang diuji: Windows 11, Node 24.11.1, Postgres tertanam 19 (beta) lokal. Vercel Preview dan Production: lihat bagian Deployment yang berjalan.
+
+## Deployment yang berjalan
+
+| | Nilai |
+|---|---|
+| URL Production | https://sela-barber.vercel.app |
+| Repo GitHub | [ZaXSeT/Sela-barber](https://github.com/ZaXSeT/Sela-barber) (folder ini adalah root repo; push ke `main` = deploy Production) |
+| Proyek Vercel | `sela-barber` (Hobby, framework SvelteKit, region fungsi `sin1`) |
+| Database Production | Supabase `porto-threads-prod` (Singapura), schema `barber`, role `barber_app` |
+| Database Preview | Supabase `porto-threads-preview`, schema dan role yang sama |
+| Env | `DATABASE_URL` (Sensitive) berbeda untuk Production dan Preview, lewat transaction pooler `aws-1-ap-southeast-1.pooler.supabase.com:6543` |
+
+Role `barber_app` hanya memiliki schema `barber`. Akses ke schema aplikasi lain dan `CREATE` pada database ditolak (diuji). Preview deployment dilindungi Vercel Authentication; Production publik.
+
+### Hasil uji di Vercel (26 Nov 2026)
+
+| Lingkungan | Hasil |
+|---|---|
+| Preview | B1 reservasi 28 Nov 10.00 (Rp55.000), B2 dua permintaan bersamaan untuk 11.30 → 200 + 409, B3 Senin → 400, POST lintas origin → 403; `agenda` di DB preview memuat 2 reservasi, DB prod 0 |
+| Production | B1 reservasi 28 Nov 12.15, B2 rebutan 13.00 → 200 + 409, B3 → 400; jam terisi tertutup setelah reload; `/og.jpg` 200 |
+| Redeploy Production | Transaksi sintetis sebelum redeploy tetap terbaca lewat CLI pemilik setelah redeploy (lihat `npm run agenda -- --tanggal 2026-11-28` dengan `DATABASE_URL` Production) |
+
+## Desain
+
+Navbar penuh dari tepi ke tepi dan menempel di atas; konten dan foto mengisi lebar layar dengan gutter `clamp(1rem, 3.2vw, 3rem)`. Palet: hitam espresso `#15110e`, gading `#f2ebdd`, oxblood `#7b2219`, kuningan `#b8935c`. Dicek di 360, 390, 768, 1440, dan 1920 px tanpa scroll horizontal.
 
 ## Deploy ke Vercel
 

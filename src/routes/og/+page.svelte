@@ -38,12 +38,13 @@
 		height: 630px;
 		display: grid;
 		grid-template-columns: 1fr 470px;
-		background: var(--paper);
+		background: var(--ink);
+		color: var(--paper);
 		overflow: hidden;
 	}
 	.left {
 		padding: 56px 56px 0 64px;
-		border-right: 1px solid var(--rule);
+		border-right: 1px solid var(--brass);
 	}
 	.name {
 		font: 700 112px/0.9 var(--display);
@@ -53,13 +54,13 @@
 		margin-top: 18px;
 		font-size: 25px;
 		max-width: 30ch;
-		color: var(--ink-soft);
+		color: #cfc4b2;
 	}
 	ul {
 		list-style: none;
 		margin: 30px 0 0;
 		padding: 18px 0 0;
-		border-top: 4px double var(--rule);
+		border-top: 4px double var(--brass);
 	}
 	li {
 		display: flex;
@@ -69,10 +70,11 @@
 	}
 	li i {
 		flex: 1;
-		border-bottom: 2px dotted var(--ink-soft);
+		border-bottom: 2px dotted var(--brass);
 	}
 	li b {
 		font-weight: 700;
+		color: var(--brass-soft);
 	}
 	.right {
 		position: relative;
@@ -87,8 +89,9 @@
 		left: 28px;
 		bottom: 28px;
 		background: var(--card);
-		border: 1px solid var(--ink);
-		outline: 1px solid var(--ink);
+		color: var(--ink);
+		border: 1px solid var(--brass);
+		outline: 1px solid var(--brass);
 		outline-offset: -6px;
 		padding: 16px 24px;
 		display: grid;

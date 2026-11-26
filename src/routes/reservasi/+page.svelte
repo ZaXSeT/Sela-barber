@@ -290,6 +290,7 @@
 						<button type="button" class="linkish" onclick={fillExample}>Isi contoh</button>
 					</p>
 
+					<div class="who">
 					<div class="field">
 						<label for="name">Nama panggilan</label>
 						<input
@@ -321,7 +322,9 @@
 						<p class="hint" id="hint-kontak">Dipakai barber untuk mengabari bila ada perubahan.</p>
 						{#if errors.contact}<p class="field-error" tabindex="-1" id="err-kontak">{errors.contact}</p>{/if}
 					</div>
+					</div>
 
+					<div class="check">
 					<div class="summary" aria-live="polite">
 						<h3>Ringkasan</h3>
 						<dl>
@@ -343,6 +346,7 @@
 						{submitting ? 'Menyimpan reservasi…' : 'Konfirmasi reservasi'}
 					</button>
 					<p class="hint">Bayar di tempat setelah dicukur. Tidak ada pembayaran online.</p>
+					</div>
 				</section>
 			</div>
 		</form>
@@ -848,6 +852,36 @@
 		}
 		.page.has-bar {
 			padding-bottom: 3rem;
+		}
+	}
+	@media (min-width: 80rem) {
+		/* Isian di kiri, ringkasan + tombol di kanan: tidak ada ruang kosong di layar lebar. */
+		.details {
+			display: grid;
+			grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+			column-gap: 3rem;
+			align-items: start;
+		}
+		.details > h2,
+		.details > .demo-flag {
+			grid-column: 1 / -1;
+		}
+		.check .summary {
+			margin-top: 0;
+		}
+		.who .field input,
+		.check .confirm {
+			max-width: none;
+		}
+		.layout {
+			grid-template-columns: minmax(22rem, 28rem) minmax(0, 1fr);
+			gap: 3.5rem;
+		}
+		.grid {
+			grid-template-columns: repeat(6, minmax(0, 1fr));
+		}
+		.intro h1 {
+			font-size: 6.5rem;
 		}
 	}
 </style>
